@@ -63,7 +63,7 @@ auto-import.
 .idea/modules
 *.iml
 *.ipr
-*./idea
+*.idea
 
 # CMake
 cmake-build-*/

@@ -1,16 +1,12 @@
 package Logic;
 
 import jakarta.annotation.ManagedBean;
-import jakarta.annotation.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Resource
 @ManagedBean
 public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer{
-
-    private List<String> wordsInText;
 
     /** Calculates the highest frequency of a word in a text
      *
@@ -18,15 +14,14 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer{
      * @return the highest frequency
      */
     public int calculateHighestFrequency(String text){
-        System.out.println("inside calculateHighestFrequency" + text);
         if(text == null){
             return 0;
         }
         String lowerCaseText = text.toLowerCase();
-        this.wordsInText = getWordsInText(lowerCaseText);
+        List<String> wordsInText = getWordsInText(lowerCaseText);
         int highestFrequency = 0;
         for(int i = 0; i < wordsInText.size(); ++i){
-            int frequency = calculateFrequencyForWord(this.wordsInText, wordsInText.get(i));
+            int frequency = calculateFrequencyForWord(wordsInText, wordsInText.get(i));
             if(frequency > highestFrequency){
                 highestFrequency = frequency;
             }
@@ -46,8 +41,8 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer{
         }
         String lowerCaseText = text.toLowerCase();
         String lowercaseWord = word.toLowerCase();
-        this.wordsInText = getWordsInText(lowerCaseText);
-        return calculateFrequencyForWord(this.wordsInText, lowercaseWord);
+        List<String> wordsInText = getWordsInText(lowerCaseText);
+        return calculateFrequencyForWord(wordsInText, lowercaseWord);
     }
 
     /** Calculates the highest frequency of n words in a text
@@ -63,8 +58,8 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer{
         }
         String lowerCaseText = text.toLowerCase();
         List<WordFrequency> wordFrequencies = new ArrayList<>();
-        this.wordsInText = getWordsInText(lowerCaseText);
-        for(String word : this.wordsInText) {
+        List<String> wordsInText = getWordsInText(lowerCaseText);
+        for(String word : wordsInText) {
             int frequency = calculateFrequencyForWord(text, word);
             addWord(wordFrequencies, new WordFrequencyImpl(word, frequency));
         }

@@ -190,4 +190,25 @@ public class WordFrequencyAnalyzerImplTest {
         List<WordFrequency> words = wordFrequencyAnalyzer.calculateMostFrequentNWords("mmmm l mmm test mm m test test la l1", 2);
         assertEquals("[(\"test\", 3), (\"l\", 2)]", words.toString());
     }
+
+    @Test
+    void testCalculateMostFrequentNWords5(){
+        WordFrequencyAnalyzer wordFrequencyAnalyzer = new WordFrequencyAnalyzerImpl();
+        List<WordFrequency> words = wordFrequencyAnalyzer.calculateMostFrequentNWords("\"The sun suun suuun sn shines bright bright0brIGHT.\"", 7);
+        assertEquals("[(\"bright\", 3), (\"shines\", 1), (\"sn\", 1), (\"sun\", 1), (\"suun\", 1), (\"suuun\", 1), (\"the\", 1)]", words.toString());
+    }
+
+    @Test
+    void testCalculateMostFrequentNWords6(){
+        WordFrequencyAnalyzer wordFrequencyAnalyzer = new WordFrequencyAnalyzerImpl();
+        List<WordFrequency> words = wordFrequencyAnalyzer.calculateMostFrequentNWords("\"The suuun suun sun sn shines bright bright0brIGHT.\"", 7);
+        assertEquals("[(\"bright\", 3), (\"shines\", 1), (\"sn\", 1), (\"sun\", 1), (\"suun\", 1), (\"suuun\", 1), (\"the\", 1)]", words.toString());
+    }
+
+    @Test
+    void testCalculateMostFrequentNWords7(){
+        WordFrequencyAnalyzer wordFrequencyAnalyzer = new WordFrequencyAnalyzerImpl();
+        List<WordFrequency> words = wordFrequencyAnalyzer.calculateMostFrequentNWords("\"The suuun suuun suun suun sun sun sun sn sn sn sn shines bright bright0brIGHT.\"", 7);
+        assertEquals("[(\"sn\", 4), (\"bright\", 3), (\"sun\", 3), (\"suun\", 2), (\"suuun\", 2), (\"shines\", 1), (\"the\", 1)]", words.toString());
+    }
 }

@@ -140,8 +140,7 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer{
                 } else { //word already exists in the list
                     return;
                 }
-            }
-            if (wordFrequencies.get(middle).getFrequency() < wordFrequency.getFrequency()) {
+            } else if (wordFrequencies.get(middle).getFrequency() < wordFrequency.getFrequency()) {
                 right = middle - 1;
             } else {
                 left = middle + 1;
